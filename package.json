@@ -1,6 +1,6 @@
 {
-  "description": "session name",
-  "main": "./malvin.js",
+  "description": "session-lite",
+  "main": "./malving.js",
   "type": "commonjs",
   "engines": {
     "node": ">=20.0.0"

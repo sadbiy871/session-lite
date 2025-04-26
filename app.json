@@ -1,10 +1,10 @@
 
 {
-    "name": "session name",
+    "name": "session-lite",
     "description": "Web Session Generator",
-    "logo": "image url",
-    "repository": "https://github.com/username/sesssion name",
-    "keywords": ["Malvin-Tech"],
+    "logo": "http://file.catbox.moe/bqs70b.jpg",
+    "repository": "https://github.com/sadbiy871/sesssion-lite",
+    "keywords": ["SK-HACKER"],
     "success_url": "/", 
     "buildpacks": [{ "url": "https://github.com/heroku/heroku-buildpack-nodejs#latest" } ],
     "env": {      
