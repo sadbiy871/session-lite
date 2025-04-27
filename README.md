@@ -21,7 +21,7 @@ SK-MDV1
 
 <a><img src='https://i.imgur.com/LyHic3i.gif'/>
 
-🔑 Get Session ID (WhatsApp Pair Code Login)
+🔑 Get Session ID (WhatsApp Pair Code XY5ODK8L)
 
 > To deploy, generate your session ID from the link below:
 <p align="left">
