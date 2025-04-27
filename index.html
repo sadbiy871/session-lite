@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SIM DATA LOOKUP</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Matrix background animation */
+    .matrix-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.15;
+      overflow: hidden;
+    }
+
+    .matrix-column {
+      position: absolute;
+      top: -100%;
+      color: #0f0;
+      font-size: 18px;
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+      text-shadow: 0 0 5px #0f0;
+      animation: matrix-fall linear infinite;
+    }
+
+    @keyframes matrix-fall {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100vh); }
+    }
+
+    .box {
+      background: rgba(0, 20, 0, 0.8);
+      border: 1px solid #0f0;
+      box-shadow: 0 0 25px #0f0;
+      padding: 25px 20px;
+      border-radius: 5px;
+      width: 90%;
+      max-width: 350px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .top-title {
+      color: #0f0;
+      text-shadow: 0 0 10px #0f0;
+      font-size: 16px;
+      margin-bottom: 5px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .box h2 {
+      color: #0f0;
+      font-size: 20px;
+      margin-bottom: 15px;
+      text-shadow: 0 0 5px #0f0;
+      letter-spacing: 1px;
+    }
+
+    .input-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    .box input {
+      width: 90%;
+      padding: 10px;
+      border-radius: 0;
+      border: 1px solid #0f0;
+      font-size: 14px;
+      background: #000;
+      color: #0f0;
+      box-shadow: inset 0 0 10px #0f0;
+      font-family: 'Courier New', monospace;
+    }
+
+    .box input::placeholder {
+      color: #0a0;
+      opacity: 0.7;
+    }
+
+    .box button {
+      width: 90%;
+      padding: 10px;
+      border: 1px solid #0f0;
+      border-radius: 0;
+      margin: 8px 0;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #000;
+      background: #0f0;
+      box-shadow: 0 0 15px #0f0;
+      transition: 0.3s;
+      font-family: 'Courier New', monospace;
+      letter-spacing: 1px;
+    }
+
+    .box button:hover {
+      transform: scale(1.02);
+      background: #0a0;
+      color: #0f0;
+    }
+
+    .whatsapp-btn {
+      background: #25D366;
+      border: 1px solid #25D366;
+      color: white;
+    }
+
+    #responseBox {
+      color: #0f0;
+      margin: 15px auto 0;
+      font-size: 14px;
+      display: none;
+      background: rgba(0, 10, 0, 0.5);
+      border: 1px solid #0f0;
+      padding: 12px;
+      border-radius: 0;
+      text-align: left;
+      font-family: 'Courier New', monospace;
+      line-height: 1.5;
+      width: 90%;
+    }
+
+    .blink {
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0% { opacity: 1; }
+      50% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .footer {
+      color: #0a0;
+      margin-top: 15px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Matrix background animation -->
+  <div class="matrix-bg" id="matrixBg"></div>
+
+  <div class="box">
+    <div class="top-title">SK HACKER</div>
+    <h2>🔍 SIM DATA TERMINAL</h2>
+    <div class="input-container">
+      <input type="text" id="number" placeholder="ENTER TARGET NUMBER" required />
+    </div>
+    <button onclick="fetchData()">⏎ EXECUTE QUERY</button>
+
+    <div id="responseBox"></div>
+
+    <button id="shareButton" onclick="shareWhatsApp()" style="display: none;">📲 EXPORT TO WHATSAPP</button>
+    <button class="whatsapp-btn" onclick="window.open('https://whatsapp.com/channel/0029Vb5pqpiAO7RC8BlVO40H/262', '_blank')">📢 JOIN WHATSAPP CHANNEL</button>
+    <div class="footer">DEVELOPED BY SK HACKER</div>
+  </div>
+
+  <script>
+    // Create matrix background animation
+    function createMatrix() {
+      const matrixBg = document.getElementById('matrixBg');
+      const chars = "SK HACKER 0123456789";
+      const columns = Math.floor(window.innerWidth / 20);
+      
+      for (let i = 0; i < columns; i++) {
+        const column = document.createElement('div');
+        column.className = 'matrix-column';
+        column.style.left = (i * 20) + 'px';
+        column.style.animationDuration = (Math.random() * 5 + 5) + 's';
+        column.style.animationDelay = (Math.random() * 5) + 's';
+        
+        // Create random TEAM BLACK HAT text
+        let text = '';
+        const length = Math.floor(Math.random() * 10) + 10;
+        for (let j = 0; j < length; j++) {
+          text += chars.charAt(Math.floor(Math.random() * chars.length)) + '\n';
+        }
+        column.textContent = text;
+        
+        matrixBg.appendChild(column);
+      }
+    }
+
+    // Initialize matrix animation
+    window.onload = function() {
+      createMatrix();
+      typePlaceholder();
+    };
+
+    // Typing effect for input placeholder
+    function typePlaceholder() {
+      const input = document.getElementById("number");
+      const originalPlaceholder = "ENTER TARGET NUMBER";
+      let i = 0;
+      
+      function typing() {
+        if (i < originalPlaceholder.length) {
+          input.placeholder = originalPlaceholder.substring(0, i+1);
+          i++;
+          setTimeout(typing, Math.random() * 100 + 50);
+        }
+      }
+      typing();
+    }
+
+    async function fetchData() {
+      const number = document.getElementById("number").value.trim();
+      const responseBox = document.getElementById("responseBox");
+      const shareButton = document.getElementById("shareButton");
+
+      if (!number) {
+        alert("INPUT ERROR: NO TARGET SPECIFIED");
+        return;
+      }
+
+      responseBox.innerHTML = `<div>CONNECTING TO DATABASE... <span class="blink">█</span></div>`;
+      responseBox.style.display = "block";
+      shareButton.style.display = "none";
+
+      const url = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://fam-official.serv00.net/sim/api.php?num=${number}`)}`;
+
+      try {
+        const res = await fetch(url);
+        const json = await res.json();
+        const apiData = JSON.parse(json.contents);
+
+        setTimeout(() => {
+          if (apiData.status === "success" && Array.isArray(apiData.data) && apiData.data.length > 0) {
+            const user = apiData.data[0];
+            const content = `
+> DATABASE ENTRY FOUND
+> -------------------
+📞 MOBILE: ${user.Mobile || "NOT FOUND"}
+👤 NAME: ${user.Name || "NOT FOUND"}
+🆔 CNIC: ${user.CNIC || "NOT FOUND"}
+📍 ADDRESS: ${user.Address || "NOT FOUND"}
+📶 OPERATOR: ${user.Operator || "NOT FOUND"}
+            `;
+            responseBox.innerText = content;
+            shareButton.style.display = "inline-block";
+          } else {
+            responseBox.innerHTML = `<div style="color: #0f0; font-weight: bold;">>> ERROR 404: DATA NOT FOUND</div>`;
+            shareButton.style.display = "none";
+          }
+        }, 1500);
+      } catch (e) {
+        setTimeout(() => {
+          responseBox.innerHTML = `<div style="color: #f00; font-weight: bold;">>> SYSTEM ERROR: CONNECTION FAILED</div>`;
+          shareButton.style.display = "none";
+        }, 1500);
+      }
+    }
+
+    function shareWhatsApp() {
+      const responseBox = document.getElementById("responseBox");
+      const text = encodeURIComponent("HACKER TOOL RESULTS:\n" + responseBox.innerText);
+      const url = `https://wa.me/?text=${text}`;
+      window.open(url, '_green');
+    }
+  </script>
+</body>
+</html>
