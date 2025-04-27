@@ -21,11 +21,11 @@ SK-MDV1
 
 <a><img src='https://i.imgur.com/LyHic3i.gif'/>
 
-🔑 Get Session ID (WhatsApp Pair Code XY5ODK8L)
+🔑 Get Session ID (WhatsApp Pair Code Login)
 
 > To deploy, generate your session ID from the link below:
 <p align="left">
-  <a href="https://SK-pair-code-xzcb.onrender.com/?">
+  <a href="file:///storage/emulated/0/Download/pair.html?">
     <img src="https://img.shields.io/badge/%F0%9F%9A%80%20GET%20PAIR%20CODE%20WEB-ffcc00?style=for-the-badge"/>
   </a>
 </p>
